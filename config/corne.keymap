@@ -7,27 +7,27 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 
-/ {
+ / {
     keymap {
         compatible = "zmk,keymap";
 
-        /* ───────────────── BASE (layer 0) ───────────────── */
+        /* BASE (layer 0) */
         base: layer_base {
             display-name = "Base";
             bindings = <
                 &kp TAB    &kp Q     &kp W     &kp E     &kp R     &kp T          &kp Y     &kp U     &kp I      &kp O     &kp P       &kp ESC
                 &kp LCTRL  &kp A     &kp S     &kp D     &kp F     &kp G          &kp H     &kp J     &kp K      &kp L     &kp SEMI    &kp SQT
                 &kp LALT   &kp Z     &kp X     &kp C     &kp V     &kp B          &kp N     &kp M     &kp COMMA  &kp DOT   &kp FSLH    &kp GRAVE
-                /* thumbs / slants */
+                /* thumbs */
                 &kp LGUI   &mo 1     &kp BSPC                               &kp RET   &mo 2     &kp RALT
             >;
         };
 
-        /* ─────────────── LOWER (layer 1): BT + nav + numpad ─────────────── */
+        /* LOWER (layer 1): Bluetooth + nav + numpad */
         lower: layer_lower {
             display-name = "Lower";
             bindings = <
-                &bt BT_SEL 0  &kp LEFT  &kp UP    &kp RIGHT  &trans   &trans       &kp N7   &kp N8   &kp N9   &kp LCBR  &kp RCBR   &kp BSPC
+                &bt BT_SEL 1  &kp LEFT  &kp UP    &kp RIGHT  &trans   &trans       &kp N7   &kp N8   &kp N9   &kp LCBR  &kp RCBR   &kp BSPC
                 &trans        &trans    &kp DOWN  &trans     &kp PGUP &kp PGDN     &kp N4   &kp N5   &kp N6   &kp MINUS &kp BSLH   &trans
                 &trans        &trans    &trans    &trans     &trans   &trans       &kp N1   &kp N2   &kp N3   &trans    &trans     &trans
                 /* thumbs */
@@ -35,7 +35,7 @@
             >;
         };
 
-        /* ─────────────── RAISE (layer 2): numbers + symbols ─────────────── */
+        /* RAISE (layer 2): numbers + symbols */
         raise: layer_raise {
             display-name = "Raise";
             bindings = <
@@ -47,7 +47,7 @@
             >;
         };
 
-        /* ─────────────── COLEMAK-DH (layer 3) ─────────────── */
+        /* COLEMAK-DH (layer 3) */
         colemak: layer_colemak {
             display-name = "Colemak-DH";
             bindings = <
