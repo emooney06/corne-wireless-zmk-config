@@ -18,8 +18,8 @@
             #binding-cells = <0>;
             bindings = <&kp LG(LC(LS(RIGHT)))>;
         };
+    };
 
-/ {
     keymap {
         compatible = "zmk,keymap";
 
