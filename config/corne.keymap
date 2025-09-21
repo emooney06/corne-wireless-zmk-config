@@ -1,6 +1,6 @@
 /*
  * Corne wireless (nice_nano_v2)
- * Layers: 0=COLEMAK / 1=QWERTY / 2=LOWER / 3=RAISE 
+ * Layers: 0=BASE / 1=QWERTY / 2=LOWER / 3=RAISE 
  */
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
@@ -9,8 +9,8 @@
     keymap {
         compatible = "zmk,keymap";
 
-        base: layer_colemak {
-            display-name = "Colemak-dh";
+        base: layer_base {
+            display-name = "Base";
             bindings = <
                 &kp TAB         &kp Q  &kp W  &kp F  &kp P  &kp B     &kp J  &kp L  &kp U      &kp Y    &kp SEMI  &to 1
                 &mt CAPS LCTRL  &kp A  &kp R  &kp S  &kp T  &kp G     &kp M  &kp N  &kp E      &kp I    &kp O     &kp SQT
@@ -19,7 +19,7 @@
             >;
         };
         
-        qwerty: layer_base {
+        qwerty: layer_qwerty {
             display-name = "QWERTY";
             bindings = <
                 &kp TAB         &kp Q  &kp W  &kp E  &kp R  &kp T    &kp Y  &kp U  &kp I      &kp O    &kp P     &to 0
