@@ -26,20 +26,20 @@
         base: layer_base {
             display-name = "Base";
             bindings = <
-                &kp TAB         &kp Q  &kp W  &kp F  &kp P  &kp B     &kp J  &kp L  &kp U      &kp Y    &kp SEMI  &to 1
-                &mt CAPS LCTRL  &kp A  &kp R  &kp S  &kp T  &kp G     &kp M  &kp N  &kp E      &kp I    &kp O     &kp SQT
-                &kp LALT        &kp Z  &kp X  &kp C  &kp D  &kp V     &kp K  &kp H  &kp COMMA  &kp DOT  &kp FSLH  &kp GRAVE
-                                 &kp LGUI  &mo 2  &mt LSHIFT BSPC      &mt LSHIFT SPACE &mo 3 &kp RET
+                &kp TAB    &kp Q  &kp W  &kp F  &kp P  &kp B     &kp J  &kp L  &kp U      &kp Y    &kp SEMI  &to 1
+                &kp LCTRL  &kp A  &kp R  &kp S  &kp T  &kp G     &kp M  &kp N  &kp E      &kp I    &kp O     &kp SQT
+                &kp LALT   &kp Z  &kp X  &kp C  &kp D  &kp V     &kp K  &kp H  &kp COMMA  &kp DOT  &kp FSLH  &kp GRAVE
+                           &kp LGUI  &mo 2  &mt LSHIFT BSPC      &mt LSHIFT SPACE &mo 3 &kp RET
             >;
         };
         
         qwerty: layer_qwerty {
             display-name = "QWERTY";
             bindings = <
-                &kp TAB         &kp Q  &kp W  &kp E  &kp R  &kp T    &kp Y  &kp U  &kp I      &kp O    &kp P     &to 0
-                &mt CAPS LCTRL  &kp A  &kp S  &kp D  &kp F  &kp G    &kp H  &kp J  &kp K      &kp L    &kp SEMI  &kp SQT
-                &kp LALT        &kp Z  &kp X  &kp C  &kp V  &kp B    &kp N  &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp GRAVE
-                                &kp LGUI  &mo 2  &mt LSHIFT BSPC      &mt LSHIFT SPACE  &mo 3  &kp RET
+                &kp TAB     &kp Q  &kp W  &kp E  &kp R  &kp T    &kp Y  &kp U  &kp I      &kp O    &kp P     &to 0
+                &kp LCTRL   &kp A  &kp S  &kp D  &kp F  &kp G    &kp H  &kp J  &kp K      &kp L    &kp SEMI  &kp SQT
+                &kp LALT    &kp Z  &kp X  &kp C  &kp V  &kp B    &kp N  &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp GRAVE
+                            &kp LGUI  &mo 2  &mt LSHIFT BSPC      &mt LSHIFT SPACE  &mo 3  &kp RET
             >;
         };
         
