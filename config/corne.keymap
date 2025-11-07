@@ -102,14 +102,14 @@
             bindings = <&kp>, <&kp>;
         };
 
-        // Simple layer-tap: Tap = momentary layer, Hold = Shift
+        // Layer-tap: Tap = toggle layer (on/off), Hold = Shift
         lt_lower: layer_tap_lower {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             tapping-term-ms = <200>;
             quick-tap-ms = <150>;
             flavor = "balanced";
-            bindings = <&kp>, <&mo>;
+            bindings = <&kp>, <&tog>;
         };
         
         lt_raise: layer_tap_raise {
@@ -118,7 +118,7 @@
             tapping-term-ms = <200>;
             quick-tap-ms = <150>;
             flavor = "balanced";
-            bindings = <&kp>, <&mo>;
+            bindings = <&kp>, <&tog>;
         };
     };
 
@@ -148,7 +148,7 @@
         lower: layer_lower {
             display-name = "Num-Nav";
             bindings = <
-                &bt BT_CLR      &bt BT_SEL 0    &bt BT_SEL 1   &bt BT_SEL 2   &bt BT_SEL 3   &bt BT_SEL 4    &trans  &kp N7  &kp N8  &kp N9  &trans      &kp BSPC
+                &tog 2          &bt BT_SEL 0    &bt BT_SEL 1   &bt BT_SEL 2   &bt BT_SEL 3   &bt BT_SEL 4    &trans  &kp N7  &kp N8  &kp N9  &trans      &kp BSPC
                 &kp C_AC_CUT    &kp C_AC_COPY   &kp LEFT       &kp UP         &kp RIGHT      &kp PGUP        &trans  &kp N4  &kp N5  &kp N6  &kp PLUS    &kp ASTERISK
                 &trans          &kp C_AC_PASTE  &mv_ws_left    &kp DOWN       &mv_ws_right   &kp PGDN        &trans  &kp N1  &kp N2  &kp N3  &kp MINUS   &kp FSLH
                                                                 &trans         &trans         &trans          &trans  &kp N0  &kp EQUAL
@@ -158,7 +158,7 @@
         raise: layer_raise {
             display-name = "Symbols";
             bindings = <
-                &kp GRAVE  &kp N1    &kp EXCL   &kp AT     &kp AMPS   &kp PIPE     &kp BSLH   &kp FSLH    &kp LBRC  &kp LBRC  &kp RBRC  &tog 4
+                &tog 3     &kp N1    &kp EXCL   &kp AT     &kp AMPS   &kp PIPE     &kp BSLH   &kp FSLH    &kp LBRC  &kp LBRC  &kp RBRC  &tog 4
                 &kp LCTRL  &trans    &kp LT     &kp GT     &kp ASTRK  &kp HASH     &kp EQUAL  &kp UNDER   &kp LPAR  &kp RPAR  &kp GRAVE  &trans
                 &kp LSHFT  &kp EXCL  &kp TILDE  &kp CARET  &kp DLLR   &kp PRCNT    &kp PLUS   &kp MINUS   &kp LBKT  &kp RBKT  &kp QMARK  &trans
                                                 &trans     &trans     &trans       &trans     &trans      &trans
