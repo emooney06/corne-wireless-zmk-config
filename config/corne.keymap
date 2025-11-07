@@ -102,21 +102,42 @@
             bindings = <&kp>, <&kp>;
         };
 
-        // Creative tap-dance for multi-layer access!
-        // Left thumb: Single tap = Lower (nav/numbers), Double tap = Mouse, Hold = Shift
-        td_left: tap_dance_left {
+        // Tap-dance for layer access: Single tap = lower layer, Double tap = mouse layer
+        td_lower_layer: tap_dance_lower_layer {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&mo 2>, <&mo 4>, <&kp LSHIFT>;
+            bindings = <&mo 2>, <&mo 4>;
         };
         
-        // Right thumb: Single tap = Raise (symbols), Double tap = Mouse, Hold = Shift  
-        td_right: tap_dance_right {
+        // Tap-dance for layer access: Single tap = raise layer, Double tap = mouse layer
+        td_raise_layer: tap_dance_raise_layer {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&mo 3>, <&mo 4>, <&kp RSHIFT>;
+            bindings = <&mo 3>, <&mo 4>;
+        };
+        
+        // Hold-tap wrapper: Tap = tap-dance (layer/mouse), Hold = Shift
+        ht_left: hold_tap_left {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <150>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&td_lower_layer>;
+            retro-tap;
+        };
+        
+        // Hold-tap wrapper: Tap = tap-dance (layer/mouse), Hold = Shift
+        ht_right: hold_tap_right {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <150>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&td_raise_layer>;
+            retro-tap;
         };
     };
 
@@ -129,7 +150,7 @@
                 &kp TAB    &kp Q           &kp W           &kp F           &kp P           &kp B               &kp J  &kp L           &kp U           &kp Y            &kp SEMI  &to 1
                 &kp LCTRL  &hm_a UNDER A  &hm_r MINUS R  &hm_s EQUAL S  &hm_t PLUS T   &kp G               &kp M  &hm_n LPAR N   &hm_e RPAR E   &hm_i LBKT I    &hm_o RBKT O  &kp SQT
                 &kp LALT   &kp Z           &kp X           &kp C           &kp D           &kp V               &kp K  &kp H           &kp COMMA       &kp DOT          &kp FSLH  &kp GRAVE
-                                                           &kp LGUI        &td_left        &kp BSPC            &kp SPACE  &td_right  &kp RET
+                                                           &kp LGUI        &ht_left LSHIFT 0  &kp BSPC        &kp SPACE  &ht_right RSHIFT 0  &kp RET
             >;
         };
         
@@ -139,7 +160,7 @@
                 &kp TAB    &kp Q           &kp W           &kp E           &kp R           &kp T               &kp Y  &kp U           &kp I           &kp O            &kp P     &to 0
                 &kp LCTRL  &hm_a UNDER A  &hm_r MINUS S  &hm_s EQUAL D  &hm_t PLUS F   &kp G               &kp H  &hm_n LPAR J   &hm_e RPAR K   &hm_i LBKT L    &hm_o RBKT SEMI  &kp SQT
                 &kp LALT   &kp Z           &kp X           &kp C           &kp V           &kp B               &kp N  &kp M           &kp COMMA       &kp DOT          &kp FSLH  &kp GRAVE
-                                                           &kp LGUI        &td_left        &kp BSPC            &kp SPACE  &td_right  &kp RET
+                                                           &kp LGUI        &ht_left LSHIFT 0  &kp BSPC        &kp SPACE  &ht_right RSHIFT 0  &kp RET
             >;
         };
         
