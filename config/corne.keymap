@@ -119,9 +119,10 @@
         };
         
         // Hold-tap: Tap = tap-dance (sticky layers), Hold = Shift
+        // Only takes 1 parameter: the shift keycode
         ht_left: hold_tap_left {
             compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
+            #binding-cells = <1>;
             tapping-term-ms = <200>;
             quick-tap-ms = <150>;
             flavor = "balanced";
@@ -130,7 +131,7 @@
         
         ht_right: hold_tap_right {
             compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
+            #binding-cells = <1>;
             tapping-term-ms = <200>;
             quick-tap-ms = <150>;
             flavor = "balanced";
