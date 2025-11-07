@@ -1,10 +1,16 @@
 /*
  * Corne wireless (nice_nano_v2)
- * Layers: 0=BASE / 1=QWERTY / 2=LOWER / 3=RAISE 
+ * Enhanced with:
+ * - Home row symbols (hold-tap)
+ * - Tap-dance layer switching (single=layer, double=different layer, hold=shift)
+ * - Mouse emulation layer
+ * - Repeating space/backspace
+ * Layers: 0=COLEMAK / 1=QWERTY / 2=LOWER / 3=RAISE / 4=MOUSE
  */
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/mouse.h>
 
 / {
     macros {
@@ -20,46 +26,150 @@
         };
     };
 
+    behaviors {
+        // Home row hold-tap for symbols
+        // Left hand home row
+        hm_a: homerow_mods_a {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <150>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
+        };
+        
+        hm_r: homerow_mods_r {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <150>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
+        };
+        
+        hm_s: homerow_mods_s {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <150>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
+        };
+        
+        hm_t: homerow_mods_t {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <150>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
+        };
+        
+        // Right hand home row
+        hm_n: homerow_mods_n {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <150>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
+        };
+        
+        hm_e: homerow_mods_e {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <150>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
+        };
+        
+        hm_i: homerow_mods_i {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <150>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
+        };
+        
+        hm_o: homerow_mods_o {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <150>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
+        };
+
+        // Creative tap-dance for multi-layer access!
+        // Left thumb: Single tap = Lower (nav/numbers), Double tap = Mouse, Hold = Shift
+        td_left: tap_dance_left {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&mo 2>, <&mo 4>, <&kp LSHIFT>;
+        };
+        
+        // Right thumb: Single tap = Raise (symbols), Double tap = Mouse, Hold = Shift  
+        td_right: tap_dance_right {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&mo 3>, <&mo 4>, <&kp RSHIFT>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
-
+        
         base: layer_base {
             display-name = "Colemak-DH";
             bindings = <
-                &kp TAB    &kp Q  &kp W  &kp F  &kp P  &kp B     &kp J  &kp L  &kp U      &kp Y    &kp SEMI  &to 1
-                &kp LCTRL  &kp A  &kp R  &kp S  &kp T  &kp G     &kp M  &kp N  &kp E      &kp I    &kp O     &kp SQT
-                &kp LALT   &kp Z  &kp X  &kp C  &kp D  &kp V     &kp K  &kp H  &kp COMMA  &kp DOT  &kp FSLH  &kp GRAVE
-                           &kp LGUI  &mo 2  &mt LSHIFT BSPC      &mt LSHIFT SPACE &mo 3 &kp RET
+                &kp TAB    &kp Q           &kp W           &kp F           &kp P           &kp B               &kp J  &kp L           &kp U           &kp Y            &kp SEMI  &to 1
+                &kp LCTRL  &hm_a UNDER A  &hm_r MINUS R  &hm_s EQUAL S  &hm_t PLUS T   &kp G               &kp M  &hm_n LPAR N   &hm_e RPAR E   &hm_i LBKT I    &hm_o RBKT O  &kp SQT
+                &kp LALT   &kp Z           &kp X           &kp C           &kp D           &kp V               &kp K  &kp H           &kp COMMA       &kp DOT          &kp FSLH  &kp GRAVE
+                                                           &kp LGUI        &td_left        &kp BSPC            &kp SPACE  &td_right  &kp RET
             >;
         };
         
         qwerty: layer_qwerty {
             display-name = "QWERTY";
             bindings = <
-                &kp TAB     &kp Q  &kp W  &kp E  &kp R  &kp T    &kp Y  &kp U  &kp I      &kp O    &kp P     &to 0
-                &kp LCTRL   &kp A  &kp S  &kp D  &kp F  &kp G    &kp H  &kp J  &kp K      &kp L    &kp SEMI  &kp SQT
-                &kp LALT    &kp Z  &kp X  &kp C  &kp V  &kp B    &kp N  &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp GRAVE
-                            &kp LGUI  &mo 2  &mt LSHIFT BSPC      &mt LSHIFT SPACE  &mo 3  &kp RET
+                &kp TAB    &kp Q           &kp W           &kp E           &kp R           &kp T               &kp Y  &kp U           &kp I           &kp O            &kp P     &to 0
+                &kp LCTRL  &hm_a UNDER A  &hm_r MINUS S  &hm_s EQUAL D  &hm_t PLUS F   &kp G               &kp H  &hm_n LPAR J   &hm_e RPAR K   &hm_i LBKT L    &hm_o RBKT SEMI  &kp SQT
+                &kp LALT   &kp Z           &kp X           &kp C           &kp V           &kp B               &kp N  &kp M           &kp COMMA       &kp DOT          &kp FSLH  &kp GRAVE
+                                                           &kp LGUI        &td_left        &kp BSPC            &kp SPACE  &td_right  &kp RET
             >;
         };
         
         lower: layer_lower {
-            display-name = "Nun-Nav";
+            display-name = "Num-Nav";
             bindings = <
-                &bt BT_CLR   &bt BT_SEL 0   &bt BT_SEL 1   &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4        &trans  &kp N7  &kp N8  &kp N9   &trans        &kp BSPC
-                &kp C_AC_CUT    &kp C_AC_COPY   &kp LEFT       &kp UP        &kp RIGHT     &kp PGUP            &trans  &kp N4  &kp N5  &kp N6   &kp PLUS   &kp ASTERISK
-                &trans          &kp C_AC_PASTE  &mv_ws_left    &kp DOWN      &mv_ws_right  &kp PGDN            &trans  &kp N1  &kp N2  &kp N3    &kp MINUS  &kp FSLH
-                                                                &trans    &trans        &trans                     &trans   &kp N0    &kp EQUAL
+                &bt BT_CLR      &bt BT_SEL 0    &bt BT_SEL 1   &bt BT_SEL 2   &bt BT_SEL 3   &bt BT_SEL 4    &trans  &kp N7  &kp N8  &kp N9  &trans      &kp BSPC
+                &kp C_AC_CUT    &kp C_AC_COPY   &kp LEFT       &kp UP         &kp RIGHT      &kp PGUP        &trans  &kp N4  &kp N5  &kp N6  &kp PLUS    &kp ASTERISK
+                &trans          &kp C_AC_PASTE  &mv_ws_left    &kp DOWN       &mv_ws_right   &kp PGDN        &trans  &kp N1  &kp N2  &kp N3  &kp MINUS   &kp FSLH
+                                                                &trans         &trans         &trans          &trans  &kp N0  &kp EQUAL
             >;
         };
         
         raise: layer_raise {
-            display-name = "Spec-Char";
+            display-name = "Symbols";
             bindings = <
-                &kp GRAVE  &kp N1    &kp EXCL   &kp AT     &kp AMPS   &kp PIPE        &kp BSLH      &kp FSLH    &kp LBRC  &kp LBRC  &kp RBRC  &kp BSPC
-                &kp LCTRL  &trans    &kp LT     &kp GT     &kp ASTRK  &kp HASH        &kp EQUAL  &kp UNDER   &kp LPAR  &kp RPAR  &kp GRAVE  &trans
-                &kp LSHFT  &kp EXCL  &kp TILDE  &kp CARET  &kp DLLR   &kp PRCNT       &kp PLUS      &kp MINUS   &kp LBKT  &kp RBKT  &kp QMARK  &trans
-                                            &trans  &trans  &trans                   &trans  &trans  &trans
+                &kp GRAVE  &kp N1    &kp EXCL   &kp AT     &kp AMPS   &kp PIPE     &kp BSLH   &kp FSLH    &kp LBRC  &kp LBRC  &kp RBRC  &kp BSPC
+                &kp LCTRL  &trans    &kp LT     &kp GT     &kp ASTRK  &kp HASH     &kp EQUAL  &kp UNDER   &kp LPAR  &kp RPAR  &kp GRAVE  &trans
+                &kp LSHFT  &kp EXCL  &kp TILDE  &kp CARET  &kp DLLR   &kp PRCNT    &kp PLUS   &kp MINUS   &kp LBKT  &kp RBKT  &kp QMARK  &trans
+                                                &trans     &trans     &trans       &trans     &trans      &trans
+            >;
+        };
+        
+        mouse: layer_mouse {
+            display-name = "Mouse";
+            bindings = <
+                &trans  &trans  &trans         &mkp MB3       &trans          &trans          &trans  &trans  &trans  &trans  &trans  &trans
+                &trans  &trans  &mmv MOVE_LEFT &mmv MOVE_UP   &mmv MOVE_RIGHT &trans          &trans  &trans  &trans  &trans  &trans  &trans
+                &trans  &trans  &trans         &mmv MOVE_DOWN &trans          &trans          &trans  &trans  &trans  &trans  &trans  &trans
+                                               &trans         &mkp MB1        &mkp MB2        &trans  &trans  &trans
             >;
         };
     };
