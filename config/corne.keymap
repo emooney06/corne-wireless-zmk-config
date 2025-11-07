@@ -102,41 +102,25 @@
             bindings = <&kp>, <&kp>;
         };
 
-        // Tap-dance: Single tap = sticky layer, Double tap = sticky mouse layer
-        // (Sticky = layer stays active for next keypress then automatically deactivates)
-        td_lower_layer: tap_dance_lower_layer {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&sl 2>, <&sl 4>;
-        };
-        
-        td_raise_layer: tap_dance_raise_layer {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&sl 3>, <&sl 4>;
-        };
-        
-        // Hold-tap: Tap = tap-dance (sticky layers), Hold = Shift
-        // Only takes 1 parameter: the shift keycode
-        ht_left: hold_tap_left {
+        // Simple layer-tap: Tap = momentary layer, Hold = Shift
+        lt_lower: layer_tap_lower {
             compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <1>;
+            #binding-cells = <2>;
             tapping-term-ms = <200>;
             quick-tap-ms = <150>;
             flavor = "balanced";
-            bindings = <&kp>, <&td_lower_layer>;
+            bindings = <&kp>, <&mo>;
         };
         
-        ht_right: hold_tap_right {
+        lt_raise: layer_tap_raise {
             compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <1>;
+            #binding-cells = <2>;
             tapping-term-ms = <200>;
             quick-tap-ms = <150>;
             flavor = "balanced";
-            bindings = <&kp>, <&td_raise_layer>;
+            bindings = <&kp>, <&mo>;
         };
+    };
     };
 
     keymap {
@@ -148,7 +132,7 @@
                 &kp TAB    &kp Q           &kp W           &kp F           &kp P           &kp B               &kp J  &kp L           &kp U           &kp Y            &kp SEMI  &to 1
                 &kp LCTRL  &hm_a UNDER A  &hm_r MINUS R  &hm_s EQUAL S  &hm_t PLUS T   &kp G               &kp M  &hm_n LPAR N   &hm_e RPAR E   &hm_i LBKT I    &hm_o RBKT O  &kp SQT
                 &kp LALT   &kp Z           &kp X           &kp C           &kp D           &kp V               &kp K  &kp H           &kp COMMA       &kp DOT          &kp FSLH  &kp GRAVE
-                                                           &kp LGUI        &ht_left LSHIFT &kp BSPC            &kp SPACE  &ht_right RSHIFT  &kp RET
+                                                           &kp LGUI        &lt_lower LSHIFT 2  &kp BSPC        &kp SPACE  &lt_raise RSHIFT 3  &kp RET
             >;
         };
         
@@ -158,7 +142,7 @@
                 &kp TAB    &kp Q           &kp W           &kp E           &kp R           &kp T               &kp Y  &kp U           &kp I           &kp O            &kp P     &to 0
                 &kp LCTRL  &hm_a UNDER A  &hm_r MINUS S  &hm_s EQUAL D  &hm_t PLUS F   &kp G               &kp H  &hm_n LPAR J   &hm_e RPAR K   &hm_i LBKT L    &hm_o RBKT SEMI  &kp SQT
                 &kp LALT   &kp Z           &kp X           &kp C           &kp V           &kp B               &kp N  &kp M           &kp COMMA       &kp DOT          &kp FSLH  &kp GRAVE
-                                                           &kp LGUI        &ht_left LSHIFT &kp BSPC            &kp SPACE  &ht_right RSHIFT  &kp RET
+                                                           &kp LGUI        &lt_lower LSHIFT 2  &kp BSPC        &kp SPACE  &lt_raise RSHIFT 3  &kp RET
             >;
         };
         
@@ -175,7 +159,7 @@
         raise: layer_raise {
             display-name = "Symbols";
             bindings = <
-                &kp GRAVE  &kp N1    &kp EXCL   &kp AT     &kp AMPS   &kp PIPE     &kp BSLH   &kp FSLH    &kp LBRC  &kp LBRC  &kp RBRC  &kp BSPC
+                &kp GRAVE  &kp N1    &kp EXCL   &kp AT     &kp AMPS   &kp PIPE     &kp BSLH   &kp FSLH    &kp LBRC  &kp LBRC  &kp RBRC  &tog 4
                 &kp LCTRL  &trans    &kp LT     &kp GT     &kp ASTRK  &kp HASH     &kp EQUAL  &kp UNDER   &kp LPAR  &kp RPAR  &kp GRAVE  &trans
                 &kp LSHFT  &kp EXCL  &kp TILDE  &kp CARET  &kp DLLR   &kp PRCNT    &kp PLUS   &kp MINUS   &kp LBKT  &kp RBKT  &kp QMARK  &trans
                                                 &trans     &trans     &trans       &trans     &trans      &trans
@@ -185,7 +169,7 @@
         mouse: layer_mouse {
             display-name = "Mouse";
             bindings = <
-                &trans  &trans  &trans         &mkp MB3       &trans          &trans          &trans  &trans  &trans  &trans  &trans  &trans
+                &trans  &trans  &trans         &mkp MB3       &trans          &trans          &trans  &trans  &trans  &trans  &trans  &tog 4
                 &trans  &trans  &mmv MOVE_LEFT &mmv MOVE_UP   &mmv MOVE_RIGHT &trans          &trans  &trans  &trans  &trans  &trans  &trans
                 &trans  &trans  &trans         &mmv MOVE_DOWN &trans          &trans          &trans  &trans  &trans  &trans  &trans  &trans
                                                &trans         &mkp MB1        &mkp MB2        &trans  &trans  &trans
