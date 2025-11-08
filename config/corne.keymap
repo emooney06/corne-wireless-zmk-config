@@ -27,6 +27,22 @@
     };
 
     behaviors {
+        // Tap-dance: Single tap = Tab, Double tap = Escape
+        td_tab_esc: tap_dance_tab_esc {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp TAB>, <&kp ESC>;
+        };
+
+        // Tap-dance: Single tap = Ctrl, Double tap = Caps Word
+        td_ctrl_caps: tap_dance_ctrl_caps {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp LCTRL>, <&caps_word>;
+        };
+
         // Home row hold-tap for symbols
         // Left hand home row
         hm_a: homerow_mods_a {
@@ -128,20 +144,20 @@
         base: layer_base {
             display-name = "Colemak-DH";
             bindings = <
-                &kp TAB    &kp Q           &kp W           &kp F           &kp P           &kp B               &kp J  &kp L           &kp U           &kp Y            &kp SEMI  &to 1
-                &kp LCTRL  &hm_a UNDER A  &hm_r MINUS R  &hm_s EQUAL S  &hm_t PLUS T   &kp G               &kp M  &hm_n LPAR N   &hm_e RPAR E   &hm_i LBKT I    &hm_o RBKT O  &kp SQT
-                &kp LALT   &kp Z           &kp X           &kp C           &kp D           &kp V               &kp K  &kp H           &kp COMMA       &kp DOT          &kp FSLH  &kp GRAVE
-                                                           &kp LGUI        &lt_lower LSHIFT 2  &kp BSPC        &kp SPACE  &lt_raise RSHIFT 3  &kp RET
+                &td_tab_esc   &kp Q           &kp W           &kp F           &kp P           &kp B               &kp J  &kp L           &kp U           &kp Y            &kp SEMI  &to 1
+                &td_ctrl_caps &hm_a UNDER A  &hm_r MINUS R  &hm_s EQUAL S  &hm_t PLUS T   &kp G               &kp M  &hm_n LPAR N   &hm_e RPAR E   &hm_i LBKT I    &hm_o RBKT O  &kp SQT
+                &kp LALT      &kp Z           &kp X           &kp C           &kp D           &kp V               &kp K  &kp H           &kp COMMA       &kp DOT          &kp FSLH  &kp GRAVE
+                                                              &kp LGUI        &lt_lower LSHIFT 2  &kp BSPC        &kp SPACE  &lt_raise RSHIFT 3  &kp RET
             >;
         };
         
         qwerty: layer_qwerty {
             display-name = "QWERTY";
             bindings = <
-                &kp TAB    &kp Q           &kp W           &kp E           &kp R           &kp T               &kp Y  &kp U           &kp I           &kp O            &kp P     &to 0
-                &kp LCTRL  &hm_a UNDER A  &hm_r MINUS S  &hm_s EQUAL D  &hm_t PLUS F   &kp G               &kp H  &hm_n LPAR J   &hm_e RPAR K   &hm_i LBKT L    &hm_o RBKT SEMI  &kp SQT
-                &kp LALT   &kp Z           &kp X           &kp C           &kp V           &kp B               &kp N  &kp M           &kp COMMA       &kp DOT          &kp FSLH  &kp GRAVE
-                                                           &kp LGUI        &lt_lower LSHIFT 2  &kp BSPC        &kp SPACE  &lt_raise RSHIFT 3  &kp RET
+                &td_tab_esc   &kp Q           &kp W           &kp E           &kp R           &kp T               &kp Y  &kp U           &kp I           &kp O            &kp P     &to 0
+                &td_ctrl_caps &hm_a UNDER A  &hm_r MINUS S  &hm_s EQUAL D  &hm_t PLUS F   &kp G               &kp H  &hm_n LPAR J   &hm_e RPAR K   &hm_i LBKT L    &hm_o RBKT SEMI  &kp SQT
+                &kp LALT      &kp Z           &kp X           &kp C           &kp V           &kp B               &kp N  &kp M           &kp COMMA       &kp DOT          &kp FSLH  &kp GRAVE
+                                                              &kp LGUI        &lt_lower LSHIFT 2  &kp BSPC        &kp SPACE  &lt_raise RSHIFT 3  &kp RET
             >;
         };
         
