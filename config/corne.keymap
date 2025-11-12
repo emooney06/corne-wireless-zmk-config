@@ -40,12 +40,11 @@
 
         // Python/Pandas macros
         
-        // df[''] with cursor between quotes
+        // df[''] without cursor positioning
         df_brackets: df_brackets {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_tap &kp D &kp F &kp LBKT &kp SQT &kp SQT &kp RBKT
-                        &kp LEFT &kp LEFT>;
+            bindings = <&macro_tap &kp D &kp F &kp LBKT &kp SQT &kp SQT &kp RBKT>;
         };
         
         // .groupby().agg()
@@ -53,27 +52,24 @@
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&macro_tap &kp DOT &kp G &kp R &kp O &kp U &kp P &kp B &kp Y
-                        &kp LPAR &kp RPAR &kp DOT &kp A &kp G &kp G &kp LPAR &kp RPAR
-                        &kp LEFT>;
+                        &kp LPAR &kp RPAR &kp DOT &kp A &kp G &kp G &kp LPAR &kp RPAR>;
         };
         
-        // pd.to_datetime() with cursor inside
+        // pd.to_datetime()
         pd_datetime: pd_datetime {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&macro_tap &kp P &kp D &kp DOT &kp T &kp O &kp UNDER
                         &kp D &kp A &kp T &kp E &kp T &kp I &kp M &kp E
-                        &kp LPAR &kp RPAR
-                        &kp LEFT>;
+                        &kp LPAR &kp RPAR>;
         };
         
-        // .loc[] with cursor between brackets
+        // .loc[]
         loc_brackets: loc_brackets {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&macro_tap &kp DOT &kp L &kp O &kp C
-                        &kp LBKT &kp RBKT
-                        &kp LEFT>;
+                        &kp LBKT &kp RBKT>;
         };
         
         // lambda x: with cursor after colon
@@ -84,17 +80,16 @@
                         &kp X &kp COLON &kp SPACE>;
         };
         
-        // f"{}" with cursor between braces
+        // f"{}"
         fstring: fstring {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_tap &kp F &kp DQT &kp LBRC &kp RBRC &kp DQT
-                        &kp LEFT &kp LEFT>;
+            bindings = <&macro_tap &kp F &kp DQT &kp LBRC &kp RBRC &kp DQT>;
         };
         
         // SQL Server macros
         
-        // DATEADD(day, , GETDATE()) with cursor at first value
+        // DATEADD(day, , GETDATE())
         sql_dateadd: sql_dateadd {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -103,12 +98,10 @@
                         &kp LPAR &kp D &kp A &kp Y &kp COMMA &kp SPACE
                         &kp COMMA &kp SPACE
                         &kp LS(G) &kp LS(E) &kp LS(T) &kp LS(D) &kp LS(A) &kp LS(T) &kp LS(E)
-                        &kp LPAR &kp RPAR &kp RPAR
-                        &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT
-                        &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT>;
+                        &kp LPAR &kp RPAR &kp RPAR>;
         };
         
-        // DATEDIFF(day, , ) with cursor at first value
+        // DATEDIFF(day, , )
         sql_datediff: sql_datediff {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -116,11 +109,10 @@
                         &kp LS(D) &kp LS(A) &kp LS(T) &kp LS(E) &kp LS(D) &kp LS(I) &kp LS(F) &kp LS(F)
                         &kp LPAR &kp D &kp A &kp Y &kp COMMA &kp SPACE
                         &kp COMMA &kp SPACE
-                        &kp RPAR
-                        &kp LEFT &kp LEFT &kp LEFT>;
+                        &kp RPAR>;
         };
         
-        // CAST( AS VARCHAR(50)) with cursor after CAST(
+        // CAST( AS VARCHAR(50))
         sql_cast: sql_cast {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -128,22 +120,19 @@
                         &kp LS(C) &kp LS(A) &kp LS(S) &kp LS(T) &kp LPAR
                         &kp SPACE &kp LS(A) &kp LS(S) &kp SPACE
                         &kp LS(V) &kp LS(A) &kp LS(R) &kp LS(C) &kp LS(H) &kp LS(A) &kp LS(R)
-                        &kp LPAR &kp N5 &kp N0 &kp RPAR &kp RPAR
-                        &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT
-                        &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT>;
+                        &kp LPAR &kp N5 &kp N0 &kp RPAR &kp RPAR>;
         };
         
-        // ISNULL(, 0) with cursor after ISNULL(
+        // ISNULL(, 0)
         sql_isnull: sql_isnull {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&macro_tap 
                         &kp LS(I) &kp LS(S) &kp LS(N) &kp LS(U) &kp LS(L) &kp LS(L)
-                        &kp LPAR &kp COMMA &kp SPACE &kp N0 &kp RPAR
-                        &kp LEFT &kp LEFT &kp LEFT &kp LEFT>;
+                        &kp LPAR &kp COMMA &kp SPACE &kp N0 &kp RPAR>;
         };
         
-        // ROW_NUMBER() OVER (PARTITION BY  ORDER BY ) with cursor after PARTITION BY
+        // ROW_NUMBER() OVER (PARTITION BY  ORDER BY )
         sql_rownum: sql_rownum {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -155,9 +144,7 @@
                         &kp LS(B) &kp LS(Y) &kp SPACE
                         &kp SPACE &kp LS(O) &kp LS(R) &kp LS(D) &kp LS(E) &kp LS(R) &kp SPACE
                         &kp LS(B) &kp LS(Y) &kp SPACE
-                        &kp RPAR
-                        &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT
-                        &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT>;
+                        &kp RPAR>;
         };
         
         // >= DATEADD(day, -30, GETDATE()) for last 30 days filter
