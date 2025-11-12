@@ -3,7 +3,7 @@
  * Enhanced with:
  * - Home row symbols (hold-tap)
  * - Tap-dance layer switching (single=layer, double=different layer, hold=shift)
- * - Mouse emulation layer
+ * - Mouse emulation layer with productivity macros
  * - Repeating space/backspace
  * Layers: 0=COLEMAK / 1=QWERTY / 2=LOWER / 3=RAISE / 4=MOUSE
  */
@@ -23,6 +23,121 @@
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&kp LG(LC(LS(RIGHT)))>;
+        };
+
+        // Email macro
+        email: email {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp E &kp J &kp M &kp O &kp O &kp N &kp E &kp Y 
+                        &kp AT &kp S &kp A &kp L &kp U &kp D &kp DOT 
+                        &kp U &kp N &kp M &kp DOT &kp E &kp D &kp U>;
+        };
+
+        // SQL Server template
+        sql_template: sql_template {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap 
+                        &kp LS(S) &kp LS(E) &kp LS(L) &kp LS(E) &kp LS(C) &kp LS(T) &kp SPACE
+                        &kp LS(T) &kp LS(O) &kp LS(P) &kp SPACE &kp N1 &kp N0 &kp N0 &kp RET
+                        &kp SPACE &kp SPACE &kp SPACE &kp SPACE &kp STAR &kp RET
+                        &kp LS(F) &kp LS(R) &kp LS(O) &kp LS(M) &kp SPACE &kp RET
+                        &kp LS(W) &kp LS(H) &kp LS(E) &kp LS(R) &kp LS(E) &kp SPACE &kp RET
+                        &kp LS(G) &kp LS(R) &kp LS(O) &kp LS(U) &kp LS(P) &kp SPACE 
+                        &kp LS(B) &kp LS(Y) &kp SPACE &kp RET
+                        &kp LS(O) &kp LS(R) &kp LS(D) &kp LS(E) &kp LS(R) &kp SPACE 
+                        &kp LS(B) &kp LS(Y) &kp SPACE &kp SEMI>;
+        };
+
+        // Python imports block
+        py_imports: py_imports {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp I &kp M &kp P &kp O &kp R &kp T &kp SPACE
+                        &kp P &kp A &kp N &kp D &kp A &kp S &kp SPACE &kp A &kp S &kp SPACE &kp P &kp D &kp RET
+                        &kp I &kp M &kp P &kp O &kp R &kp T &kp SPACE
+                        &kp N &kp U &kp M &kp P &kp Y &kp SPACE &kp A &kp S &kp SPACE &kp N &kp P &kp RET
+                        &kp F &kp R &kp O &kp M &kp SPACE
+                        &kp D &kp A &kp T &kp E &kp T &kp I &kp M &kp E &kp SPACE
+                        &kp I &kp M &kp P &kp O &kp R &kp T &kp SPACE
+                        &kp D &kp A &kp T &kp E &kp T &kp I &kp M &kp E &kp RET
+                        &kp I &kp M &kp P &kp O &kp R &kp T &kp SPACE
+                        &kp D &kp A &kp T &kp A &kp UNDER &kp T &kp E &kp A &kp M &kp UNDER
+                        &kp F &kp U &kp N &kp C &kp T &kp I &kp O &kp N &kp S &kp SPACE
+                        &kp A &kp S &kp SPACE &kp D &kp T &kp F>;
+        };
+
+        // Airflow DAG template with decorators and data-aware scheduling
+        dag_template: dag_template {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap 
+                        &kp F &kp R &kp O &kp M &kp SPACE &kp A &kp I &kp R &kp F &kp L &kp O &kp W &kp DOT
+                        &kp D &kp E &kp C &kp O &kp R &kp A &kp T &kp O &kp R &kp S &kp SPACE
+                        &kp I &kp M &kp P &kp O &kp R &kp T &kp SPACE 
+                        &kp D &kp A &kp G &kp COMMA &kp SPACE &kp T &kp A &kp S &kp K &kp RET
+                        &kp F &kp R &kp O &kp M &kp SPACE &kp D &kp A &kp T &kp E &kp T &kp I &kp M &kp E &kp SPACE
+                        &kp I &kp M &kp P &kp O &kp R &kp T &kp SPACE &kp D &kp A &kp T &kp E &kp T &kp I &kp M &kp E &kp COMMA &kp SPACE
+                        &kp T &kp I &kp M &kp E &kp D &kp E &kp L &kp T &kp A &kp RET
+                        &kp F &kp R &kp O &kp M &kp SPACE &kp A &kp I &kp R &kp F &kp L &kp O &kp W &kp DOT
+                        &kp D &kp A &kp T &kp A &kp S &kp E &kp T &kp S &kp SPACE
+                        &kp I &kp M &kp P &kp O &kp R &kp T &kp SPACE &kp LS(D) &kp A &kp T &kp A &kp S &kp E &kp T &kp RET
+                        &kp RET
+                        &kp AT &kp D &kp A &kp G &kp LPAR &kp RET
+                        &kp SPACE &kp SPACE &kp SPACE &kp SPACE &kp D &kp A &kp G &kp UNDER &kp I &kp D &kp EQUAL &kp SQT &kp SQT &kp COMMA &kp RET
+                        &kp SPACE &kp SPACE &kp SPACE &kp SPACE &kp S &kp C &kp H &kp E &kp D &kp U &kp L &kp E &kp EQUAL &kp LBKT &kp RBKT &kp COMMA &kp RET
+                        &kp SPACE &kp SPACE &kp SPACE &kp SPACE &kp O &kp U &kp T &kp L &kp E &kp T &kp S &kp EQUAL &kp LBKT &kp RBKT &kp COMMA &kp RET
+                        &kp SPACE &kp SPACE &kp SPACE &kp SPACE &kp S &kp T &kp A &kp R &kp T &kp UNDER &kp D &kp A &kp T &kp E &kp EQUAL
+                        &kp D &kp A &kp T &kp E &kp T &kp I &kp M &kp E &kp LPAR &kp N2 &kp N0 &kp N2 &kp N4 &kp COMMA &kp SPACE 
+                        &kp N1 &kp COMMA &kp SPACE &kp N1 &kp RPAR &kp COMMA &kp RET
+                        &kp SPACE &kp SPACE &kp SPACE &kp SPACE &kp C &kp A &kp T &kp C &kp H &kp U &kp P &kp EQUAL &kp F &kp A &kp L &kp S &kp E &kp COMMA &kp RET
+                        &kp SPACE &kp SPACE &kp SPACE &kp SPACE &kp T &kp A &kp G &kp S &kp EQUAL &kp LBKT &kp SQT &kp SQT &kp RBKT &kp COMMA &kp RET
+                        &kp SPACE &kp SPACE &kp SPACE &kp SPACE &kp D &kp O &kp C &kp UNDER &kp M &kp D &kp EQUAL &kp SQT &kp SQT &kp SQT &kp RET
+                        &kp SPACE &kp SPACE &kp SPACE &kp SPACE &kp HASH &kp HASH &kp SPACE &kp LS(P) &kp U &kp R &kp P &kp O &kp S &kp E &kp RET
+                        &kp SPACE &kp SPACE &kp SPACE &kp SPACE &kp RET
+                        &kp SPACE &kp SPACE &kp SPACE &kp SPACE &kp HASH &kp HASH &kp SPACE &kp LS(D) &kp A &kp T &kp A &kp SPACE 
+                        &kp LS(S) &kp O &kp U &kp R &kp C &kp E &kp S &kp RET
+                        &kp SPACE &kp SPACE &kp SPACE &kp SPACE &kp RET
+                        &kp SPACE &kp SPACE &kp SPACE &kp SPACE &kp HASH &kp HASH &kp SPACE &kp LS(O) &kp U &kp T &kp P &kp U &kp T &kp S &kp RET
+                        &kp SPACE &kp SPACE &kp SPACE &kp SPACE &kp SQT &kp SQT &kp SQT &kp RET
+                        &kp RPAR &kp RET
+                        &kp D &kp E &kp F &kp SPACE &kp M &kp Y &kp UNDER &kp D &kp A &kp G &kp LPAR &kp RPAR &kp COLON &kp RET
+                        &kp RET
+                        &kp SPACE &kp SPACE &kp SPACE &kp SPACE &kp AT &kp T &kp A &kp S &kp K &kp LPAR
+                        &kp D &kp O &kp C &kp UNDER &kp M &kp D &kp EQUAL &kp SQT &kp SQT &kp SQT
+                        &kp LS(T) &kp A &kp S &kp K &kp SPACE &kp D &kp O &kp C &kp U &kp M &kp E &kp N &kp T &kp A &kp T &kp I &kp O &kp N
+                        &kp SQT &kp SQT &kp SQT &kp RPAR &kp RET
+                        &kp SPACE &kp SPACE &kp SPACE &kp SPACE &kp D &kp E &kp F &kp SPACE &kp T &kp A &kp S &kp K &kp UNDER &kp N &kp A &kp M &kp E 
+                        &kp LPAR &kp RPAR &kp COLON &kp RET
+                        &kp SPACE &kp SPACE &kp SPACE &kp SPACE &kp SPACE &kp SPACE &kp SPACE &kp SPACE &kp P &kp A &kp S &kp S &kp RET
+                        &kp RET
+                        &kp SPACE &kp SPACE &kp SPACE &kp SPACE &kp T &kp A &kp S &kp K &kp UNDER &kp N &kp A &kp M &kp E 
+                        &kp LPAR &kp RPAR &kp RET
+                        &kp RET
+                        &kp D &kp A &kp G &kp SPACE &kp EQUAL &kp SPACE &kp M &kp Y &kp UNDER &kp D &kp A &kp G &kp LPAR &kp RPAR>;
+        };
+
+        // Airflow task template with decorator
+        task_template: task_template {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap 
+                        &kp AT &kp T &kp A &kp S &kp K &kp LPAR
+                        &kp D &kp O &kp C &kp UNDER &kp M &kp D &kp EQUAL &kp SQT &kp SQT &kp SQT
+                        &kp LS(T) &kp A &kp S &kp K &kp SPACE &kp D &kp O &kp C &kp U &kp M &kp E &kp N &kp T &kp A &kp T &kp I &kp O &kp N
+                        &kp SQT &kp SQT &kp SQT &kp RPAR &kp RET
+                        &kp D &kp E &kp F &kp SPACE &kp T &kp A &kp S &kp K &kp UNDER &kp N &kp A &kp M &kp E 
+                        &kp LPAR &kp RPAR &kp COLON &kp RET
+                        &kp SPACE &kp SPACE &kp SPACE &kp SPACE &kp P &kp A &kp S &kp S>;
+        };
+
+        // Python datetime.now()
+        py_datetime_now: py_datetime_now {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp D &kp A &kp T &kp E &kp T &kp I &kp M &kp E &kp DOT
+                        &kp N &kp O &kp W &kp LPAR &kp RPAR>;
         };
     };
 
@@ -184,7 +299,7 @@
         raise: layer_raise {
             display-name = "Symbols";
             bindings = <
-                &tog 3     &kp N1    &kp EXCL   &kp AT     &kp AMPS   &kp PIPE     &kp BSLH   &kp FSLH    &kp LBRC  &kp LBRC  &kp RBRC  &tog 4
+                &tog 3     &kp N1    &kp EXCL   &kp AT     &kp AMPS   &kp PIPE     &kp BSLH   &kp FSLH    &kp LBRC  &kp RBRC  &kp BSPC  &tog 4
                 &kp LCTRL  &trans    &kp LT     &kp GT     &kp ASTRK  &kp HASH     &kp EQUAL  &kp UNDER   &kp LPAR  &kp RPAR  &kp GRAVE  &trans
                 &kp LSHFT  &kp EXCL  &kp TILDE  &kp CARET  &kp DLLR   &kp PRCNT    &kp PLUS   &kp MINUS   &kp LBKT  &kp RBKT  &kp QMARK  &trans
                                                 &trans     &trans     &trans       &trans     &trans      &trans
@@ -192,12 +307,12 @@
         };
         
         mouse: layer_mouse {
-            display-name = "Mouse";
+            display-name = "Macros";
             bindings = <
-                &trans  &trans  &trans         &mkp MB3       &trans          &trans          &trans  &trans  &trans  &trans  &trans  &tog 4
-                &trans  &trans  &mmv MOVE_LEFT &mmv MOVE_UP   &mmv MOVE_RIGHT &trans          &trans  &trans  &trans  &trans  &trans  &trans
-                &trans  &trans  &trans         &mmv MOVE_DOWN &trans          &trans          &trans  &trans  &trans  &trans  &trans  &trans
-                                               &trans         &mkp MB1        &mkp MB2        &trans  &trans  &trans
+                &trans          &trans          &trans          &mkp MB3        &trans          &trans          &email      &sql_template   &py_imports     &dag_template   &task_template  &tog 4
+                &trans          &trans          &mmv MOVE_LEFT  &mmv MOVE_UP    &mmv MOVE_RIGHT &trans          &trans      &trans          &trans          &trans          &py_datetime_now &trans
+                &trans          &trans          &trans          &mmv MOVE_DOWN  &trans          &trans          &trans      &trans          &trans          &trans          &trans          &trans
+                                                                &trans          &mkp MB1        &mkp MB2        &trans      &trans          &trans
             >;
         };
     };
