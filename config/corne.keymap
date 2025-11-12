@@ -73,36 +73,60 @@
         py_imports: py_imports {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_tap 
+            bindings = <
+                        &macro_tap_time 30
+                        &macro_wait_time 50
+                        &macro_tap 
                         &kp I &kp M &kp P &kp O &kp R &kp T 
-                        &macro_wait_time 15
+                        &macro_wait_time 50
                         &kp SPACE
-                        &kp P &kp A &kp N &kp D &kp A &kp S &kp SPACE &kp A &kp S &kp SPACE &kp P &kp D 
-                        &macro_wait_time 20
+                        &macro_wait_time 50
+                        &kp P &kp A &kp N &kp D &kp A &kp S 
+                        &macro_wait_time 50
+                        &kp SPACE &kp A &kp S &kp SPACE 
+                        &macro_wait_time 50
+                        &kp P &kp D 
+                        &macro_wait_time 100
                         &kp RET
-                        &macro_wait_time 20
+                        &macro_wait_time 100
                         &kp I &kp M &kp P &kp O &kp R &kp T 
-                        &macro_wait_time 15
+                        &macro_wait_time 50
                         &kp SPACE
-                        &kp N &kp U &kp M &kp P &kp Y &kp SPACE &kp A &kp S &kp SPACE &kp N &kp P 
-                        &macro_wait_time 20
+                        &macro_wait_time 50
+                        &kp N &kp U &kp M &kp P &kp Y 
+                        &macro_wait_time 50
+                        &kp SPACE &kp A &kp S &kp SPACE 
+                        &macro_wait_time 50
+                        &kp N &kp P 
+                        &macro_wait_time 100
                         &kp RET
-                        &macro_wait_time 20
-                        &kp F &kp R &kp O &kp M &kp SPACE
-                        &kp D &kp A &kp T &kp E &kp T &kp I &kp M &kp E &kp SPACE
-                        &kp I &kp M &kp P &kp O &kp R &kp T 
-                        &macro_wait_time 15
+                        &macro_wait_time 100
+                        &kp F &kp R &kp O &kp M 
+                        &macro_wait_time 50
                         &kp SPACE
+                        &macro_wait_time 50
                         &kp D &kp A &kp T &kp E &kp T &kp I &kp M &kp E 
-                        &macro_wait_time 20
-                        &kp RET
-                        &macro_wait_time 20
-                        &kp I &kp M &kp P &kp O &kp R &kp T 
-                        &macro_wait_time 15
+                        &macro_wait_time 50
                         &kp SPACE
+                        &macro_wait_time 50
+                        &kp I &kp M &kp P &kp O &kp R &kp T 
+                        &macro_wait_time 50
+                        &kp SPACE
+                        &macro_wait_time 50
+                        &kp D &kp A &kp T &kp E &kp T &kp I &kp M &kp E 
+                        &macro_wait_time 100
+                        &kp RET
+                        &macro_wait_time 100
+                        &kp I &kp M &kp P &kp O &kp R &kp T 
+                        &macro_wait_time 50
+                        &kp SPACE
+                        &macro_wait_time 50
                         &kp D &kp A &kp T &kp A &kp UNDER &kp T &kp E &kp A &kp M &kp UNDER
-                        &kp F &kp U &kp N &kp C &kp T &kp I &kp O &kp N &kp S &kp SPACE
-                        &kp A &kp S &kp SPACE &kp D &kp T &kp F>;
+                        &kp F &kp U &kp N &kp C &kp T &kp I &kp O &kp N &kp S 
+                        &macro_wait_time 50
+                        &kp SPACE &kp A &kp S &kp SPACE 
+                        &macro_wait_time 50
+                        &kp D &kp T &kp F>;
         };
 
         // Airflow DAG template with decorators and data-aware scheduling
@@ -234,20 +258,172 @@
         task_template: task_template {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_tap 
+            bindings = <
+                        &macro_tap_time 30
+                        &macro_wait_time 50
+                        &macro_tap 
                         &kp AT &kp T &kp A &kp S &kp K &kp LPAR
+                        &macro_wait_time 50
                         &kp D &kp O &kp C &kp UNDER &kp M &kp D &kp EQUAL &kp SQT &kp SQT &kp SQT
-                        &kp LS(T) &kp A &kp S &kp K &kp SPACE &kp D &kp O &kp C &kp U &kp M &kp E &kp N &kp T &kp A &kp T &kp I &kp O &kp N
+                        &macro_wait_time 50
+                        &kp LS(T) &kp A &kp S &kp K 
+                        &macro_wait_time 50
+                        &kp SPACE 
+                        &macro_wait_time 50
+                        &kp D &kp O &kp C &kp U &kp M &kp E &kp N &kp T &kp A &kp T &kp I &kp O &kp N
+                        &macro_wait_time 50
                         &kp SQT &kp SQT &kp SQT &kp RPAR 
-                        &macro_wait_time 20
+                        &macro_wait_time 100
                         &kp RET
-                        &macro_wait_time 20
-                        &kp D &kp E &kp F &kp SPACE &kp T &kp A &kp S &kp K &kp UNDER &kp N &kp A &kp M &kp E 
+                        &macro_wait_time 100
+                        &kp D &kp E &kp F 
+                        &macro_wait_time 50
+                        &kp SPACE 
+                        &macro_wait_time 50
+                        &kp T &kp A &kp S &kp K &kp UNDER &kp N &kp A &kp M &kp E 
+                        &macro_wait_time 50
                         &kp LPAR &kp RPAR &kp COLON 
-                        &macro_wait_time 20
+                        &macro_wait_time 100
                         &kp RET
-                        &macro_wait_time 20
-                        &kp SPACE &kp SPACE &kp SPACE &kp SPACE &kp P &kp A &kp S &kp S>;
+                        &macro_wait_time 100
+                        &kp SPACE &kp SPACE &kp SPACE &kp SPACE 
+                        &macro_wait_time 50
+                        &kp P &kp A &kp S &kp S>;
+        };
+
+        // Python/Pandas macros
+        
+        // df[''] with cursor between quotes
+        df_brackets: df_brackets {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp D &kp F &kp LBKT &kp SQT &kp SQT &kp RBKT
+                        &kp LEFT &kp LEFT>;
+        };
+        
+        // .groupby().agg()
+        groupby_agg: groupby_agg {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp DOT &kp G &kp R &kp O &kp U &kp P &kp B &kp Y
+                        &kp LPAR &kp RPAR &kp DOT &kp A &kp G &kp G &kp LPAR &kp RPAR
+                        &kp LEFT>;
+        };
+        
+        // pd.to_datetime() with cursor inside
+        pd_datetime: pd_datetime {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp P &kp D &kp DOT &kp T &kp O &kp UNDER
+                        &kp D &kp A &kp T &kp E &kp T &kp I &kp M &kp E
+                        &kp LPAR &kp RPAR
+                        &kp LEFT>;
+        };
+        
+        // .loc[] with cursor between brackets
+        loc_brackets: loc_brackets {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp DOT &kp L &kp O &kp C
+                        &kp LBKT &kp RBKT
+                        &kp LEFT>;
+        };
+        
+        // lambda x: with cursor after colon
+        lambda_x: lambda_x {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp L &kp A &kp M &kp B &kp D &kp A &kp SPACE
+                        &kp X &kp COLON &kp SPACE>;
+        };
+        
+        // f"{}" with cursor between braces
+        fstring: fstring {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp F &kp DQT &kp LBRC &kp RBRC &kp DQT
+                        &kp LEFT &kp LEFT>;
+        };
+        
+        // SQL Server macros
+        
+        // DATEADD(day, , GETDATE()) with cursor at first value
+        sql_dateadd: sql_dateadd {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap 
+                        &kp LS(D) &kp LS(A) &kp LS(T) &kp LS(E) &kp LS(A) &kp LS(D) &kp LS(D)
+                        &kp LPAR &kp D &kp A &kp Y &kp COMMA &kp SPACE
+                        &kp COMMA &kp SPACE
+                        &kp LS(G) &kp LS(E) &kp LS(T) &kp LS(D) &kp LS(A) &kp LS(T) &kp LS(E)
+                        &kp LPAR &kp RPAR &kp RPAR
+                        &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT
+                        &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT>;
+        };
+        
+        // DATEDIFF(day, , ) with cursor at first value
+        sql_datediff: sql_datediff {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap 
+                        &kp LS(D) &kp LS(A) &kp LS(T) &kp LS(E) &kp LS(D) &kp LS(I) &kp LS(F) &kp LS(F)
+                        &kp LPAR &kp D &kp A &kp Y &kp COMMA &kp SPACE
+                        &kp COMMA &kp SPACE
+                        &kp RPAR
+                        &kp LEFT &kp LEFT &kp LEFT>;
+        };
+        
+        // CAST( AS VARCHAR(50)) with cursor after CAST(
+        sql_cast: sql_cast {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap 
+                        &kp LS(C) &kp LS(A) &kp LS(S) &kp LS(T) &kp LPAR
+                        &kp SPACE &kp LS(A) &kp LS(S) &kp SPACE
+                        &kp LS(V) &kp LS(A) &kp LS(R) &kp LS(C) &kp LS(H) &kp LS(A) &kp LS(R)
+                        &kp LPAR &kp N5 &kp N0 &kp RPAR &kp RPAR
+                        &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT
+                        &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT>;
+        };
+        
+        // ISNULL(, 0) with cursor after ISNULL(
+        sql_isnull: sql_isnull {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap 
+                        &kp LS(I) &kp LS(S) &kp LS(N) &kp LS(U) &kp LS(L) &kp LS(L)
+                        &kp LPAR &kp COMMA &kp SPACE &kp N0 &kp RPAR
+                        &kp LEFT &kp LEFT &kp LEFT &kp LEFT>;
+        };
+        
+        // ROW_NUMBER() OVER (PARTITION BY  ORDER BY ) with cursor after PARTITION BY
+        sql_rownum: sql_rownum {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap 
+                        &kp LS(R) &kp LS(O) &kp LS(W) &kp UNDER &kp LS(N) &kp LS(U) &kp LS(M) &kp LS(B) &kp LS(E) &kp LS(R)
+                        &kp LPAR &kp RPAR &kp SPACE
+                        &kp LS(O) &kp LS(V) &kp LS(E) &kp LS(R) &kp SPACE &kp LPAR
+                        &kp LS(P) &kp LS(A) &kp LS(R) &kp LS(T) &kp LS(I) &kp LS(T) &kp LS(I) &kp LS(O) &kp LS(N) &kp SPACE
+                        &kp LS(B) &kp LS(Y) &kp SPACE
+                        &kp SPACE &kp LS(O) &kp LS(R) &kp LS(D) &kp LS(E) &kp LS(R) &kp SPACE
+                        &kp LS(B) &kp LS(Y) &kp SPACE
+                        &kp RPAR
+                        &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT
+                        &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT>;
+        };
+        
+        // >= DATEADD(day, -30, GETDATE()) for last 30 days filter
+        sql_last30: sql_last30 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap 
+                        &kp GT &kp EQUAL &kp SPACE
+                        &kp LS(D) &kp LS(A) &kp LS(T) &kp LS(E) &kp LS(A) &kp LS(D) &kp LS(D)
+                        &kp LPAR &kp D &kp A &kp Y &kp COMMA &kp SPACE
+                        &kp MINUS &kp N3 &kp N0 &kp COMMA &kp SPACE
+                        &kp LS(G) &kp LS(E) &kp LS(T) &kp LS(D) &kp LS(A) &kp LS(T) &kp LS(E)
+                        &kp LPAR &kp RPAR &kp RPAR>;
         };
 
         // Python datetime.now()
@@ -428,10 +604,10 @@
         mouse: layer_mouse {
             display-name = "Macros";
             bindings = <
-                &trans          &trans          &trans          &mkp MB3        &trans          &trans          &email      &sql_template   &py_imports     &dag_template   &task_template  &tog 4
-                &trans          &trans          &mmv MOVE_LEFT  &mmv MOVE_UP    &mmv MOVE_RIGHT &trans          &trans      &trans          &trans          &trans          &py_datetime_now &trans
-                &trans          &trans          &trans          &mmv MOVE_DOWN  &trans          &trans          &trans      &trans          &trans          &trans          &trans          &trans
-                                                                &trans          &mkp MB1        &mkp MB2        &trans      &trans          &trans
+                &trans          &trans          &trans          &mkp MB3        &trans          &trans          &email          &df_brackets    &groupby_agg    &sql_dateadd    &sql_datediff   &tog 4
+                &trans          &trans          &mmv MOVE_LEFT  &mmv MOVE_UP    &mmv MOVE_RIGHT &trans          &fstring        &loc_brackets   &lambda_x       &sql_cast       &sql_isnull     &sql_rownum
+                &trans          &trans          &trans          &mmv MOVE_DOWN  &trans          &trans          &py_datetime_now &pd_datetime   &trans          &sql_last30     &trans          &trans
+                                                                &trans          &mkp MB1        &mkp MB2        &trans          &trans          &trans
             >;
         };
     };
