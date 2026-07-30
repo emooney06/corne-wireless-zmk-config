@@ -1,347 +1,52 @@
 /*
  * Corne wireless (nice_nano_v2)
- * Enhanced with:
- * - Home row symbols (hold-tap)
- * - Tap-dance layer switching (single=layer, double=different layer, hold=shift)
- * - Mouse emulation layer with productivity macros
- * - Repeating space/backspace
- * Layers: 0=COLEMAK / 1=QWERTY / 2=LOWER / 3=RAISE / 4=MOUSE
+ * Layers: 0=BASE / 1=LOWER / 2=RAISE / 3=COLEMAK-DH
  */
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
-#include <dt-bindings/zmk/mouse.h>
 
 / {
-    macros {
-        mv_ws_left: mv_ws_left {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp LG(LC(LS(LEFT)))>;
-        };
-        mv_ws_right: mv_ws_right {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp LG(LC(LS(RIGHT)))>;
-        };
-
-        // Email macro
-        email: email {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_tap &kp E &kp J &kp M &kp O &kp O &kp N &kp E &kp Y 
-                        &macro_wait_time 15
-                        &kp AT 
-                        &macro_wait_time 15
-                        &kp S &kp A &kp L &kp U &kp D &kp DOT 
-                        &macro_wait_time 15
-                        &kp U &kp N &kp M &kp DOT &kp E &kp D &kp U>;
-        };
-
-        // Python/Pandas macros
-        
-        // df[''] without cursor positioning
-        df_brackets: df_brackets {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_tap &kp D &kp F &kp LBKT &kp SQT &kp SQT &kp RBKT>;
-        };
-        
-        // .groupby().agg()
-        groupby_agg: groupby_agg {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_tap &kp DOT &kp G &kp R &kp O &kp U &kp P &kp B &kp Y
-                        &kp LPAR &kp RPAR &kp DOT &kp A &kp G &kp G &kp LPAR &kp RPAR>;
-        };
-        
-        // pd.to_datetime()
-        pd_datetime: pd_datetime {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_tap &kp P &kp D &kp DOT &kp T &kp O &kp UNDER
-                        &kp D &kp A &kp T &kp E &kp T &kp I &kp M &kp E
-                        &kp LPAR &kp RPAR>;
-        };
-        
-        // .loc[]
-        loc_brackets: loc_brackets {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_tap &kp DOT &kp L &kp O &kp C
-                        &kp LBKT &kp RBKT>;
-        };
-        
-        // lambda x: with cursor after colon
-        lambda_x: lambda_x {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_tap &kp L &kp A &kp M &kp B &kp D &kp A &kp SPACE
-                        &kp X &kp COLON &kp SPACE>;
-        };
-        
-        // f"{}"
-        fstring: fstring {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_tap &kp F &kp DQT &kp LBRC &kp RBRC &kp DQT>;
-        };
-        
-        // SQL Server macros
-        
-        // DATEADD(day, , GETDATE())
-        sql_dateadd: sql_dateadd {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_tap 
-                        &kp LS(D) &kp LS(A) &kp LS(T) &kp LS(E) &kp LS(A) &kp LS(D) &kp LS(D)
-                        &kp LPAR &kp D &kp A &kp Y &kp COMMA &kp SPACE
-                        &kp COMMA &kp SPACE
-                        &kp LS(G) &kp LS(E) &kp LS(T) &kp LS(D) &kp LS(A) &kp LS(T) &kp LS(E)
-                        &kp LPAR &kp RPAR &kp RPAR>;
-        };
-        
-        // DATEDIFF(day, , )
-        sql_datediff: sql_datediff {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_tap 
-                        &kp LS(D) &kp LS(A) &kp LS(T) &kp LS(E) &kp LS(D) &kp LS(I) &kp LS(F) &kp LS(F)
-                        &kp LPAR &kp D &kp A &kp Y &kp COMMA &kp SPACE
-                        &kp COMMA &kp SPACE
-                        &kp RPAR>;
-        };
-        
-        // CAST( AS VARCHAR(50))
-        sql_cast: sql_cast {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_tap 
-                        &kp LS(C) &kp LS(A) &kp LS(S) &kp LS(T) &kp LPAR
-                        &kp SPACE &kp LS(A) &kp LS(S) &kp SPACE
-                        &kp LS(V) &kp LS(A) &kp LS(R) &kp LS(C) &kp LS(H) &kp LS(A) &kp LS(R)
-                        &kp LPAR &kp N5 &kp N0 &kp RPAR &kp RPAR>;
-        };
-        
-        // ISNULL(, 0)
-        sql_isnull: sql_isnull {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_tap 
-                        &kp LS(I) &kp LS(S) &kp LS(N) &kp LS(U) &kp LS(L) &kp LS(L)
-                        &kp LPAR &kp COMMA &kp SPACE &kp N0 &kp RPAR>;
-        };
-        
-        // ROW_NUMBER() OVER (PARTITION BY  ORDER BY )
-        sql_rownum: sql_rownum {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_tap 
-                        &kp LS(R) &kp LS(O) &kp LS(W) &kp UNDER &kp LS(N) &kp LS(U) &kp LS(M) &kp LS(B) &kp LS(E) &kp LS(R)
-                        &kp LPAR &kp RPAR &kp SPACE
-                        &kp LS(O) &kp LS(V) &kp LS(E) &kp LS(R) &kp SPACE &kp LPAR
-                        &kp LS(P) &kp LS(A) &kp LS(R) &kp LS(T) &kp LS(I) &kp LS(T) &kp LS(I) &kp LS(O) &kp LS(N) &kp SPACE
-                        &kp LS(B) &kp LS(Y) &kp SPACE
-                        &kp SPACE &kp LS(O) &kp LS(R) &kp LS(D) &kp LS(E) &kp LS(R) &kp SPACE
-                        &kp LS(B) &kp LS(Y) &kp SPACE
-                        &kp RPAR>;
-        };
-        
-        // >= DATEADD(day, -30, GETDATE()) for last 30 days filter
-        sql_last30: sql_last30 {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_tap 
-                        &kp GT &kp EQUAL &kp SPACE
-                        &kp LS(D) &kp LS(A) &kp LS(T) &kp LS(E) &kp LS(A) &kp LS(D) &kp LS(D)
-                        &kp LPAR &kp D &kp A &kp Y &kp COMMA &kp SPACE
-                        &kp MINUS &kp N3 &kp N0 &kp COMMA &kp SPACE
-                        &kp LS(G) &kp LS(E) &kp LS(T) &kp LS(D) &kp LS(A) &kp LS(T) &kp LS(E)
-                        &kp LPAR &kp RPAR &kp RPAR>;
-        };
-
-        // Python datetime.now()
-        py_datetime_now: py_datetime_now {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_tap &kp D &kp A &kp T &kp E &kp T &kp I &kp M &kp E 
-                        &macro_wait_time 15
-                        &kp DOT &kp N &kp O &kp W &kp LPAR &kp RPAR>;
-        };
-    };
-
-    behaviors {
-        // Tap-dance: Single tap = Tab, Double tap = Escape
-        td_tab_esc: tap_dance_tab_esc {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&kp TAB>, <&kp ESC>;
-        };
-
-        // Tap-dance: Single tap = Ctrl, Double tap = Caps Word
-        td_ctrl_caps: tap_dance_ctrl_caps {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&kp LCTRL>, <&caps_word>;
-        };
-
-        // Home row hold-tap for symbols
-        // Left hand home row
-        hm_a: homerow_mods_a {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <200>;
-            quick-tap-ms = <150>;
-            flavor = "tap-preferred";
-            bindings = <&kp>, <&kp>;
-        };
-        
-        hm_r: homerow_mods_r {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <200>;
-            quick-tap-ms = <150>;
-            flavor = "tap-preferred";
-            bindings = <&kp>, <&kp>;
-        };
-        
-        hm_s: homerow_mods_s {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <200>;
-            quick-tap-ms = <150>;
-            flavor = "tap-preferred";
-            bindings = <&kp>, <&kp>;
-        };
-        
-        hm_t: homerow_mods_t {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <200>;
-            quick-tap-ms = <150>;
-            flavor = "tap-preferred";
-            bindings = <&kp>, <&kp>;
-        };
-        
-        // Right hand home row
-        hm_n: homerow_mods_n {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <200>;
-            quick-tap-ms = <150>;
-            flavor = "tap-preferred";
-            bindings = <&kp>, <&kp>;
-        };
-        
-        hm_e: homerow_mods_e {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <200>;
-            quick-tap-ms = <150>;
-            flavor = "tap-preferred";
-            bindings = <&kp>, <&kp>;
-        };
-        
-        hm_i: homerow_mods_i {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <200>;
-            quick-tap-ms = <150>;
-            flavor = "tap-preferred";
-            bindings = <&kp>, <&kp>;
-        };
-        
-        hm_o: homerow_mods_o {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <200>;
-            quick-tap-ms = <150>;
-            flavor = "tap-preferred";
-            bindings = <&kp>, <&kp>;
-        };
-
-        // Layer-tap: Tap = toggle layer (on/off), Hold = Shift
-        lt_lower: layer_tap_lower {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <200>;
-            quick-tap-ms = <150>;
-            flavor = "balanced";
-            bindings = <&kp>, <&tog>;
-        };
-        
-        lt_raise: layer_tap_raise {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <200>;
-            quick-tap-ms = <150>;
-            flavor = "balanced";
-            bindings = <&kp>, <&tog>;
-        };
-
-        // Hold-tap: Tap = Enter, Hold = Equal
-        ht_eq_ret: holdtap_equal_return {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <200>;
-            quick-tap-ms = <150>;
-            flavor = "tap-preferred";
-            bindings = <&kp>, <&kp>;
-        };
-    };
-
     keymap {
         compatible = "zmk,keymap";
         
         base: layer_base {
-            display-name = "Colemak-DH";
+            display-name = "Base";
             bindings = <
-                &td_tab_esc   &kp Q           &kp W           &kp F           &kp P           &kp B               &kp J  &kp L           &kp U           &kp Y            &kp SEMI  &to 1
-                &td_ctrl_caps &hm_a UNDER A  &hm_r MINUS R  &hm_s EQUAL S  &hm_t PLUS T   &kp G               &kp M  &hm_n LPAR N   &hm_e RPAR E   &hm_i LBKT I    &hm_o RBKT O  &kp SQT
-                &kp LALT      &kp Z           &kp X           &kp C           &kp D           &kp V               &kp K  &kp H           &kp COMMA       &kp DOT          &kp FSLH  &kp GRAVE
-                                                              &kp LGUI        &lt_lower LSHIFT 2  &kp BSPC        &kp SPACE  &lt_raise RSHIFT 3  &kp RET
-            >;
-        };
-        
-        qwerty: layer_qwerty {
-            display-name = "QWERTY";
-            bindings = <
-                &td_tab_esc   &kp Q           &kp W           &kp E           &kp R           &kp T               &kp Y  &kp U           &kp I           &kp O            &kp P     &to 0
-                &td_ctrl_caps &hm_a UNDER A  &hm_r MINUS S  &hm_s EQUAL D  &hm_t PLUS F   &kp G               &kp H  &hm_n LPAR J   &hm_e RPAR K   &hm_i LBKT L    &hm_o RBKT SEMI  &kp SQT
-                &kp LALT      &kp Z           &kp X           &kp C           &kp V           &kp B               &kp N  &kp M           &kp COMMA       &kp DOT          &kp FSLH  &kp GRAVE
-                                                              &kp LGUI        &lt_lower LSHIFT 2  &kp BSPC        &kp SPACE  &lt_raise RSHIFT 3  &kp RET
+                &kp TAB   &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U &kp I &kp O &kp P &kp ESC
+                &kp LCTRL &kp A &kp S &kp D &kp F &kp G   &kp H &kp J &kp K &kp L &kp SEMI &kp SQT
+                &kp LALT  &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M &kp COMMA &kp DOT &kp FSLH &kp GRAVE
+                               &kp LGUI &mo 1 &kp BSPC   &kp RET &mo 2 &kp RALT
             >;
         };
         
         lower: layer_lower {
-            display-name = "Num-Nav";
+            display-name = "Lower";
             bindings = <
-                &tog 2          &bt BT_SEL 0    &bt BT_SEL 1   &bt BT_SEL 2   &bt BT_SEL 3   &bt BT_SEL 4    &trans  &kp N7  &kp N8  &kp N9  &trans      &kp BSPC
-                &kp C_AC_CUT    &kp C_AC_COPY   &kp LEFT       &kp UP         &kp RIGHT      &kp PGUP        &trans  &kp N4  &kp N5  &kp N6  &kp PLUS    &kp ASTERISK
-                &trans          &kp C_AC_PASTE  &mv_ws_left    &kp DOWN       &mv_ws_right   &kp PGDN        &trans  &kp N1  &kp N2  &kp N3  &kp MINUS   &kp FSLH
-                                                                &trans         &trans         &trans          &trans  &kp N0  &ht_eq_ret EQUAL RET
+                &trans &kp LEFT &kp UP &kp RIGHT &trans &trans   &kp N7 &kp N8 &kp N9 &kp LBRC &kp RBRC &kp BSPC
+                &trans &trans &kp DOWN &trans &kp PGUP &kp PGDN   &kp N4 &kp N5 &kp N6 &kp MINUS &kp BSLH &trans
+                &trans &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_CLR   &kp N1 &kp N2 &kp N3 &trans &trans &trans
+                             &trans &trans &trans   &kp N0 &trans &trans
             >;
         };
         
         raise: layer_raise {
-            display-name = "Symbols";
+            display-name = "Raise";
             bindings = <
-                &tog 3     &kp N1    &kp EXCL   &kp AT     &kp AMPS   &kp PIPE     &kp BSLH   &kp FSLH    &kp LBRC  &kp RBRC  &kp BSPC  &tog 4
-                &kp LCTRL  &trans    &kp LT     &kp GT     &kp ASTRK  &kp HASH     &kp EQUAL  &kp UNDER   &kp LPAR  &kp RPAR  &kp GRAVE  &trans
-                &kp LSHFT  &kp EXCL  &kp TILDE  &kp CARET  &kp DLLR   &kp PRCNT    &kp PLUS   &kp MINUS   &kp LBKT  &kp RBKT  &kp QMARK  &trans
-                                                &trans     &trans     &trans       &trans     &trans      &trans
+                &kp GRAVE &kp N1 &kp N2 &kp N3 &kp N4 &kp N5   &kp N6 &kp N7 &kp N8 &kp LBRC &kp RBRC &kp BSPC
+                &kp LCTRL &kp EQUAL &kp EQUAL &kp N9 &kp N0 &kp BSLH   &kp MINUS &kp UNDER &kp PLUS &kp BSLH &kp GRAVE &trans
+                &kp LSHFT &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT   &kp CARET &kp AMPS &kp STAR &kp FSLH &kp QMARK &trans
+                                  &kp LGUI &trans &kp SPACE   &kp RET &trans &kp RALT
             >;
         };
         
-        mouse: layer_mouse {
-            display-name = "Macros";
+        colemak: layer_colemak {
+            display-name = "Colemak-DH";
             bindings = <
-                &trans          &trans          &trans          &mkp MB3        &trans          &trans          &email          &df_brackets    &groupby_agg    &sql_dateadd    &sql_datediff   &tog 4
-                &trans          &trans          &mmv MOVE_LEFT  &mmv MOVE_UP    &mmv MOVE_RIGHT &trans          &fstring        &loc_brackets   &lambda_x       &sql_cast       &sql_isnull     &sql_rownum
-                &trans          &trans          &trans          &mmv MOVE_DOWN  &trans          &trans          &py_datetime_now &pd_datetime   &trans          &sql_last30     &trans          &trans
-                                                                &trans          &mkp MB1        &mkp MB2        &trans          &trans          &trans
+                &kp TAB   &kp Q &kp W &kp F &kp P &kp B   &kp J &kp L &kp U &kp Y &kp SEMI &kp ESC
+                &kp LCTRL &kp A &kp R &kp S &kp T &kp G   &kp M &kp N &kp E &kp I &kp O &kp SQT
+                &kp LALT  &kp Z &kp X &kp C &kp D &kp V   &kp K &kp H &kp COMMA &kp DOT &kp FSLH &kp GRAVE
+                               &kp LGUI &mo 1 &kp BSPC   &kp RET &mo 2 &kp RALT
             >;
         };
     };
